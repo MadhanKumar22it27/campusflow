@@ -1,1 +1,8 @@
 Campusflow
+Admissions
+Assets
+Library
+Maintenance
+Finance
+Academics
+Evaluation
