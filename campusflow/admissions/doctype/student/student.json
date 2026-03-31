@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "STU-.YYYY.-.####",
  "creation": "2026-03-31 13:55:26.690727",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -76,10 +77,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-31 14:52:32.251952",
- "modified_by": "Administrator",
+ "modified": "2026-03-31 15:33:39.600652",
+ "modified_by": "madhan241125@gmail.com",
  "module": "Admissions",
  "name": "Student",
+ "naming_rule": "Expression",
  "owner": "madhan241125@gmail.com",
  "permissions": [
   {
