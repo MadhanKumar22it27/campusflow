@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "Application.-.###",
  "creation": "2026-03-31 15:43:45.929220",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -74,10 +75,11 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-31 15:50:16.209351",
- "modified_by": "Administrator",
+ "modified": "2026-03-31 16:04:31.227544",
+ "modified_by": "madhan241125@gmail.com",
  "module": "Admissions",
  "name": "Admission Application",
+ "naming_rule": "Expression",
  "owner": "madhan241125@gmail.com",
  "permissions": [
   {
@@ -97,5 +99,6 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }
