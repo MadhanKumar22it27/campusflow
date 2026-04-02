@@ -9,7 +9,8 @@
   "sudent",
   "amount_paid",
   "payment_date",
-  "status"
+  "status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -44,16 +45,27 @@
    "label": "Status",
    "options": "Paid\nPartial\nPending",
    "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fee Payment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-02 12:09:29.317690",
+ "modified": "2026-04-02 13:14:51.242078",
  "modified_by": "Administrator",
  "module": "Finance",
  "name": "Fee Payment",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

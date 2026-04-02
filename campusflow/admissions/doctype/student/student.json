@@ -48,8 +48,7 @@
    "fieldname": "date_of_birth",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Date of Birth",
-   "reqd": 1
+   "label": "Date of Birth"
   },
   {
    "fieldname": "gender",
@@ -72,8 +71,7 @@
   {
    "fieldname": "contact_number",
    "fieldtype": "Data",
-   "label": "Contact Number",
-   "reqd": 1
+   "label": "Contact Number"
   },
   {
    "fieldname": "section_break_pkbv",
@@ -83,14 +81,13 @@
    "fieldname": "fee_structure",
    "fieldtype": "Link",
    "label": "Fee Structure",
-   "options": "Fee Structure",
-   "reqd": 1
+   "options": "Fee Structure"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-02 12:10:47.143428",
+ "modified": "2026-04-02 13:01:38.528930",
  "modified_by": "Administrator",
  "module": "Admissions",
  "name": "Student",
