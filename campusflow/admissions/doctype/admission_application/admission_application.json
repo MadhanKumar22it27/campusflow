@@ -57,7 +57,7 @@
   {
    "fieldname": "parent_contact_number",
    "fieldtype": "Data",
-   "label": "Parent Contact Number",
+   "label": "Contact Number",
    "reqd": 1
   },
   {
@@ -75,8 +75,8 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-03-31 16:04:31.227544",
- "modified_by": "madhan241125@gmail.com",
+ "modified": "2026-04-02 11:09:33.969595",
+ "modified_by": "Administrator",
  "module": "Admissions",
  "name": "Admission Application",
  "naming_rule": "Expression",
@@ -99,6 +99,5 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+ "states": []
 }

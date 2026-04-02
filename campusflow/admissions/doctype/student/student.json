@@ -14,7 +14,9 @@
   "gender",
   "parent_details_section",
   "parent_name",
-  "contact_number"
+  "contact_number",
+  "section_break_pkbv",
+  "fee_structure"
  ],
  "fields": [
   {
@@ -72,13 +74,24 @@
    "fieldtype": "Data",
    "label": "Contact Number",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_pkbv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fee_structure",
+   "fieldtype": "Link",
+   "label": "Fee Structure",
+   "options": "Fee Structure",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-31 15:33:39.600652",
- "modified_by": "madhan241125@gmail.com",
+ "modified": "2026-04-02 12:10:47.143428",
+ "modified_by": "Administrator",
  "module": "Admissions",
  "name": "Student",
  "naming_rule": "Expression",
