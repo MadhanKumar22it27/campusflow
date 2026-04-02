@@ -11,3 +11,14 @@ def create_student_on_approval(doc, method):
                 "contact_number": doc.contact_number
             })
             student.insert(ignore_permissions=True)
+
+@frappe.whitelist()
+def get_student_fee(student):
+    payments = frappe.get_all(
+        "Fee Payment",
+        filters={"student": student},
+        fields=["amount_paid"]
+    )
+
+    total = sum([p.amount_paid for p in payments])
+    return total
