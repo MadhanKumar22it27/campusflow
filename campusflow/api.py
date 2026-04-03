@@ -16,9 +16,14 @@ def create_student_on_approval(doc, method):
 def get_student_fee(student):
     payments = frappe.get_all(
         "Fee Payment",
-        filters={"student": student},
+        filters={"student": student, "docstatus": 1},
         fields=["amount_paid"]
     )
 
-    total = sum(p.amount_paid for p in payments)
-    return total
+    total = sum([p.amount_paid for p in payments])
+
+    return {
+        "student": student,
+        "total_paid": total,
+        "payment_count": len(payments)
+    }
