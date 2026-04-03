@@ -1,5 +1,8 @@
 import frappe
 
+def process_fee_background(student):
+    frappe.logger().info(f"Processing fee for {student}")
+
 def create_student_on_approval(doc, method):
     if doc.status == "Approved":
         if not frappe.db.exists("Student", {"student_name": doc.applicant_name}):
