@@ -6,7 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_lqhc",
-  "sudent",
+  "student",
   "amount_paid",
   "payment_date",
   "status",
@@ -16,14 +16,6 @@
   {
    "fieldname": "section_break_lqhc",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "sudent",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Sudent",
-   "options": "Student",
-   "reqd": 1
   },
   {
    "fieldname": "amount_paid",
@@ -55,13 +47,21 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-02 13:14:51.242078",
+ "modified": "2026-04-02 16:39:59.716129",
  "modified_by": "Administrator",
  "module": "Finance",
  "name": "Fee Payment",

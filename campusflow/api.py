@@ -12,7 +12,7 @@ def create_student_on_approval(doc, method):
             })
             student.insert(ignore_permissions=True)
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_student_fee(student):
     payments = frappe.get_all(
         "Fee Payment",
@@ -20,5 +20,5 @@ def get_student_fee(student):
         fields=["amount_paid"]
     )
 
-    total = sum([p.amount_paid for p in payments])
+    total = sum(p.amount_paid for p in payments)
     return total
