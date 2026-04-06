@@ -29,3 +29,12 @@ def get_student_fee(student):
         "total_paid": total,
         "payment_count": len(payments)
     }
+
+@frappe.whitelist()
+def get_pending_fees():
+    total_fee = frappe.db.sql("""SELECT SUM(total_fee) FROM `tabFee Structure`""")[0][0] or 0
+    paid = frappe.db.sql("""SELECT SUM(amount_paid) FROM `tabFee Payment` WHERE docstatus = 1""")[0][0] or 0
+
+    return {
+        "value": total_fee - paid
+    }
