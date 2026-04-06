@@ -8,7 +8,9 @@
   "section_break_pkph",
   "student",
   "transaction_type",
-  "date"
+  "date",
+  "books",
+  "amended_from"
  ],
  "fields": [
   {
@@ -31,13 +33,29 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
+  },
+  {
+   "fieldname": "books",
+   "fieldtype": "Table",
+   "label": "Books",
+   "options": "Book Items"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Library Transaction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-06 11:07:29.265412",
+ "modified": "2026-04-06 11:13:14.796106",
  "modified_by": "Administrator",
  "module": "Library",
  "name": "Library Transaction",
