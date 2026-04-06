@@ -8,7 +8,9 @@
   "section_break_cvx7",
   "asset",
   "issue_description",
-  "status"
+  "status",
+  "logs",
+  "amended_from"
  ],
  "fields": [
   {
@@ -31,13 +33,29 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Open\nIn Progress\nClosed"
+  },
+  {
+   "fieldname": "logs",
+   "fieldtype": "Table",
+   "label": "Logs",
+   "options": "Resolution Log"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Maintenance Request",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-06 11:25:42.105590",
+ "modified": "2026-04-06 11:30:28.231288",
  "modified_by": "Administrator",
  "module": "Maintenance",
  "name": "Maintenance Request",
