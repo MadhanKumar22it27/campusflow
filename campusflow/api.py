@@ -52,3 +52,22 @@ def get_pending_fees():
         "value": pending,
         "fieldtype": "Currency"
     }
+
+@frappe.whitelist(allow_guest=True)
+def get_attendance(student):
+    records = frappe.get_all(
+        "Attendance Detail",
+        filters={"student": student},
+        fields=["status"]
+    )
+
+    total = len(records)
+    present = len([r for r in records if r.status == "Present"])
+    absent = len([r for r in records if r.status == "Absent"])
+
+    return {
+        "total_classes": total,
+        "present": present,
+        "absent": absent,
+        "percentage": (present / total * 100) if total > 0 else 0
+    }
