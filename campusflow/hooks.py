@@ -252,3 +252,5 @@ doc_events = {
         "on_update": "campusflow.api.create_student_on_approval"
     }
 }
+
+fixtures = ["Role", "Workflow", "Print Format"]
