@@ -16,7 +16,8 @@
   "parent_name",
   "contact_number",
   "section_break_pkbv",
-  "fee_structure"
+  "fee_structure",
+  "total_fee"
  ],
  "fields": [
   {
@@ -82,12 +83,17 @@
    "fieldtype": "Link",
    "label": "Fee Structure",
    "options": "Fee Structure"
+  },
+  {
+   "fieldname": "total_fee",
+   "fieldtype": "Currency",
+   "label": "Total Fee"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-02 13:01:38.528930",
+ "modified": "2026-04-07 10:49:54.984437",
  "modified_by": "Administrator",
  "module": "Admissions",
  "name": "Student",
