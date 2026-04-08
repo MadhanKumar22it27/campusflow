@@ -67,24 +67,31 @@ def get_total_students():
     return frappe.db.count("Student")
 
 
-@frappe.whitelist(allow_guest=True)
-def get_total_collected():
-    return frappe.db.sql("""
-        SELECT SUM(amount_paid) FROM `tabFee Payment`
-        WHERE docstatus = 1
-    """)[0][0] or 0
+    @frappe.whitelist(allow_guest=True)
+    def get_total_collected():
+        result = frappe.db.sql("""
+            SELECT IFNULL(SUM(amount_paid), 0)
+            FROM `tabFee Payment`
+            WHERE docstatus = 1
+        """)
+        
+        return result[0][0] or 0
 
 
-@frappe.whitelist(allow_guest=True)
-def get_pending_fees():
-    total_fee = frappe.db.sql("SELECT SUM(total_fee) FROM `tabStudent`")[0][0] or 0
+    @frappe.whitelist(allow_guest=True)
+    def get_pending_fees():
+        total_fee = frappe.db.sql("""
+            SELECT IFNULL(SUM(total_fee), 0)
+            FROM `tabStudent`
+        """)[0][0]
 
-    collected = frappe.db.sql("""
-        SELECT SUM(amount_paid) FROM `tabFee Payment`
-        WHERE docstatus = 1
-    """)[0][0] or 0
+        collected = frappe.db.sql("""
+            SELECT IFNULL(SUM(amount_paid), 0)
+            FROM `tabFee Payment`
+            WHERE docstatus = 1
+        """)[0][0]
 
-    return total_fee - collected
+        return total_fee - collected
 
 
 @frappe.whitelist(allow_guest=True)

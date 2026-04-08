@@ -1,21 +1,28 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2026-04-02 12:06:13.327009",
+ "creation": "2026-04-08 12:36:13.099874",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_lqhc",
+  "section_break_6d4u",
   "student",
   "amount_paid",
   "payment_date",
-  "status",
-  "amended_from"
+  "status"
  ],
  "fields": [
   {
-   "fieldname": "section_break_lqhc",
+   "fieldname": "section_break_6d4u",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
   },
   {
    "fieldname": "amount_paid",
@@ -28,32 +35,16 @@
   {
    "fieldname": "payment_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Payment Date",
    "reqd": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Paid\nPartial\nPending",
-   "reqd": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Fee Payment",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "student",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Student",
-   "options": "Student",
    "reqd": 1
   }
  ],
@@ -61,11 +52,10 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-02 16:39:59.716129",
+ "modified": "2026-04-08 12:38:31.027765",
  "modified_by": "Administrator",
  "module": "Finance",
  "name": "Fee Payment",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
