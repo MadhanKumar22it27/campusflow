@@ -84,3 +84,48 @@ def get_student_details(student):
         "parent": doc.parent_name,
         "total_fee": doc.total_fee
     }
+
+@frappe.whitelist(allow_guest=True)
+def get_dashboard_stats():
+
+    students = frappe.get_all("Student", fields=["name", "total_fee"])
+
+    payments = frappe.get_all(
+        "Fee Payment",
+        filters={"docstatus": 1},
+        fields=["student", "amount_paid"]
+    )
+
+    payment_map = {}
+
+    for p in payments:
+        payment_map.setdefault(p.student, 0)
+        payment_map[p.student] += p.amount_paid
+
+    total_students = len(students)
+    total_collected = 0
+    fully_paid = partially_paid = unpaid = 0
+    total_fee = 0
+
+    for s in students:
+        paid = payment_map.get(s.name, 0)
+        total_collected += paid
+        total_fee += s.total_fee or 0
+
+        if paid == 0:
+            unpaid += 1
+        elif paid < (s.total_fee or 0):
+            partially_paid += 1
+        else:
+            fully_paid += 1
+
+    pending = total_fee - total_collected
+
+    return {
+        "total_students": total_students,
+        "total_collected": total_collected,
+        "pending": pending,
+        "fully_paid": fully_paid,
+        "partially_paid": partially_paid,
+        "unpaid": unpaid
+    }
