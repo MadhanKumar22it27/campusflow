@@ -91,11 +91,15 @@ def get_pending_fees():
 def get_fully_paid_students():
     return frappe.db.sql("""
         SELECT COUNT(*) FROM (
-            SELECT s.name
+            SELECT 
+                s.name,
+                IFNULL(SUM(f.amount_paid), 0) AS paid,
+                MAX(s.total_fee) AS total_fee
             FROM `tabStudent` s
-            LEFT JOIN `tabFee Payment` f ON s.name = f.student AND f.docstatus = 1
+            LEFT JOIN `tabFee Payment` f 
+                ON s.name = f.student AND f.docstatus = 1
             GROUP BY s.name
-            HAVING SUM(f.amount_paid) >= s.total_fee
+            HAVING paid >= total_fee
         ) AS t
     """)[0][0]
 
@@ -104,11 +108,15 @@ def get_fully_paid_students():
 def get_partial_students():
     return frappe.db.sql("""
         SELECT COUNT(*) FROM (
-            SELECT s.name
+            SELECT 
+                s.name,
+                IFNULL(SUM(f.amount_paid), 0) AS paid,
+                MAX(s.total_fee) AS total_fee
             FROM `tabStudent` s
-            LEFT JOIN `tabFee Payment` f ON s.name = f.student AND f.docstatus = 1
+            LEFT JOIN `tabFee Payment` f 
+                ON s.name = f.student AND f.docstatus = 1
             GROUP BY s.name
-            HAVING SUM(f.amount_paid) > 0 AND SUM(f.amount_paid) < s.total_fee
+            HAVING paid > 0 AND paid < total_fee
         ) AS t
     """)[0][0]
 
@@ -117,10 +125,13 @@ def get_partial_students():
 def get_unpaid_students():
     return frappe.db.sql("""
         SELECT COUNT(*) FROM (
-            SELECT s.name
+            SELECT 
+                s.name,
+                IFNULL(SUM(f.amount_paid), 0) AS paid
             FROM `tabStudent` s
-            LEFT JOIN `tabFee Payment` f ON s.name = f.student AND f.docstatus = 1
+            LEFT JOIN `tabFee Payment` f 
+                ON s.name = f.student AND f.docstatus = 1
             GROUP BY s.name
-            HAVING IFNULL(SUM(f.amount_paid), 0) = 0
+            HAVING paid = 0
         ) AS t
     """)[0][0]
