@@ -45,3 +45,25 @@ mit
 1) Workflows
 
     - A workflow is a controlled approval system that tells how the work should be proceed and   what are the steps will be followed
+
+2) Role-based Permissions + has_permission hooks
+
+    - It is used to give the access to particular documents for particular users such as admin, staffs, customers and etc
+
+    ```code
+
+    def student_query(user):
+    roles = frappe.get_roles(user)
+
+    if "Campus Admin" in roles:
+        return ""
+
+    if "Teacher" in roles:
+        return ""
+
+    if "Parent" in roles:
+        return f"`tabStudent`.parent_name = {frappe.db.escape(user)}"
+
+    return ""
+
+    ```
