@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "STU-.YYYY.-.####",
+ "creation": "2026-03-31 13:55:26.690727",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "personal_details_section",
+  "student_name",
+  "student_id",
+  "program",
+  "date_of_birth",
+  "gender",
+  "parent_details_section",
+  "parent_name",
+  "contact_number",
+  "section_break_pkbv",
+  "fee_structure",
+  "total_fee"
+ ],
+ "fields": [
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Data",
+   "label": "Student ID"
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Program",
+   "options": "Program",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "Male\nFemale\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "parent_details_section",
+   "fieldtype": "Section Break",
+   "label": "Parent Details"
+  },
+  {
+   "fieldname": "parent_name",
+   "fieldtype": "Data",
+   "label": "Parent Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "section_break_pkbv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fee_structure",
+   "fieldtype": "Link",
+   "label": "Fee Structure",
+   "options": "Fee Structure"
+  },
+  {
+   "fieldname": "total_fee",
+   "fieldtype": "Currency",
+   "label": "Total Fee"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 15:37:50.131806",
+ "modified_by": "Administrator",
+ "module": "Admissions & Student Lifecycle",
+ "name": "Student",
+ "naming_rule": "Expression",
+ "owner": "madhan241125@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,8 +1,7 @@
 Campusflow
-Admissions
-Assets
-Library
-Maintenance
-Finance
-Academics
-Evaluation
+Admissions & Student Lifecycle
+Academics & Attendance
+Fees & Finance
+Procurement & Library
+Campus Assets & Maintenance
+Evaluations & Performance
