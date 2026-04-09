@@ -247,10 +247,8 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
-doc_events = {
-    "Admission Application": {
-        "on_update": "campusflow.api.create_student_on_approval"
-    }
-}
+permission_query_conditions = {"Student": "campusflow.permissions.student_query"}
+
+doc_events = {"Admission Application": {"on_update": "campusflow.api.create_student_on_approval"}}
 
 fixtures = ["Role", "Workflow", "Print Format"]

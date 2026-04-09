@@ -65,8 +65,9 @@
   },
   {
    "fieldname": "parent_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Parent Name",
+   "options": "User",
    "reqd": 1
   },
   {
@@ -93,7 +94,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 15:37:50.131806",
+ "modified": "2026-04-09 13:01:44.237946",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Student",

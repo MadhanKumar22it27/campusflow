@@ -18,7 +18,7 @@
  "list_columns": [],
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2026-04-08 15:52:49.740454",
+ "modified": "2026-04-09 16:10:54.014839",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "admission-form",
@@ -85,7 +85,7 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "fieldname": "parent_contact_number",
+   "fieldname": "contact_number",
    "fieldtype": "Data",
    "hidden": 0,
    "label": "Contact Number",
