@@ -39,3 +39,9 @@ This app can use GitHub Actions for CI. The following workflows are configured:
 ### License
 
 mit
+
+### Understanding
+
+1) Workflows
+
+    - A workflow is a controlled approval system that tells how the work should be proceed and   what are the steps will be followed
