@@ -21,7 +21,7 @@ def create_student_on_approval(doc, method):
 
 
 @frappe.whitelist()
-def get_student_fee(student):
+def get_student_fee(student: str) -> dict:
 	payments = frappe.get_all(
 		"Fee Payment", filters={"student": student, "docstatus": 1}, fields=["amount_paid"]
 	)
@@ -32,7 +32,7 @@ def get_student_fee(student):
 
 
 @frappe.whitelist()
-def get_attendance(student):
+def get_attendance(student: str) -> dict:
 	records = frappe.get_all("Attendance Detail", filters={"student": student}, fields=["status"])
 
 	total = len(records)
@@ -48,7 +48,7 @@ def get_attendance(student):
 
 
 @frappe.whitelist()
-def get_student_details(student):
+def get_student_details(student: str) -> dict:
 	doc = frappe.get_doc("Student", student)
 
 	return {
