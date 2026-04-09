@@ -105,5 +105,5 @@ mit
 			)
 			student.insert(ignore_permissions=True)
     ```
-
+    
 

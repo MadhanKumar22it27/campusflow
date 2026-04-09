@@ -67,11 +67,11 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2026-04-08 15:37:17.818584",
+ "modified": "2026-04-09 17:26:25.015833",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Program",
- "naming_rule": "Expression",
+ "naming_rule": "By fieldname",
  "nsm_parent_field": "parent_program",
  "owner": "madhan241125@gmail.com",
  "permissions": [
