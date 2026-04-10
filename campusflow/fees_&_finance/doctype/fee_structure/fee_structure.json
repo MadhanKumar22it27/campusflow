@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:program",
+ "autoname": "FEE-.####",
  "creation": "2026-04-02 11:49:52.833911",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -31,7 +31,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 15:39:44.738756",
+ "modified": "2026-04-10 10:21:32.462144",
  "modified_by": "Administrator",
  "module": "Fees & Finance",
  "name": "Fee Structure",
