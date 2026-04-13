@@ -141,3 +141,10 @@ def get_unpaid_students():
             HAVING paid = 0
         ) AS t
     """)[0][0]
+
+
+@frappe.whitelist()
+def get_courses_by_program(program: str):
+	print("from the backend")
+
+	return frappe.get_list("Course", filters={"program": program}, pluck="course_name")

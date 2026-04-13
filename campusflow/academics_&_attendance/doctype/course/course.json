@@ -28,7 +28,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-08 15:38:49.614331",
+ "modified": "2026-04-10 11:53:33.801957",
  "modified_by": "Administrator",
  "module": "Academics & Attendance",
  "name": "Course",
@@ -48,6 +48,7 @@
    "write": 1
   }
  ],
+ "route": "course",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
