@@ -10,10 +10,12 @@
   "date_of_birth",
   "program",
   "course",
+  "gender",
   "status",
   "parent_details_section",
   "parent_name",
   "contact_number",
+  "parent_email_id",
   "amended_from"
  ],
  "fields": [
@@ -56,16 +58,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Admission Application",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "contact_number",
    "fieldtype": "Phone",
    "label": "Contact Number",
@@ -75,14 +67,37 @@
    "fieldname": "course",
    "fieldtype": "Select",
    "label": "Course",
+   "options": "\nEconomics\nCivics\nGeography\nHistory\nPhysics\nChemistry\nBiology\nScience\nMaths",
    "reqd": 1
+  },
+  {
+   "fieldname": "parent_email_id",
+   "fieldtype": "Data",
+   "label": "Parent Email Id"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "Male\nFemale\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Admission Application",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-10 15:54:28.183527",
+ "modified": "2026-04-13 17:10:24.604468",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Admission Application",

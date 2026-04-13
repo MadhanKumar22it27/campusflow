@@ -19,7 +19,11 @@ def create_student_on_approval(doc, method):
 				"doctype": "Student",
 				"student_name": doc.applicant_name,
 				"program": doc.program,
+				"course": doc.course,
+				"gender": doc.gender,
+				"contact_number": doc.contact_number,
 				"parent_name": doc.parent_name,
+				"parent_email_id": doc.parent_email_id,
 				"fee_structure": fee_structure.name if fee_structure else None,
 				"total_fee": fee_structure.total_fee if fee_structure else 0,
 			}

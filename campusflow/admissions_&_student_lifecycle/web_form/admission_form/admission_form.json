@@ -19,7 +19,7 @@
  "list_columns": [],
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2026-04-10 13:42:06.281055",
+ "modified": "2026-04-13 14:10:05.467738",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "admission-form",
@@ -87,6 +87,20 @@
   },
   {
    "allow_read_on_all_link_options": 0,
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "hidden": 0,
+   "label": "Gender",
+   "max_length": 0,
+   "max_value": 0,
+   "options": "Male\nFemale\nOther",
+   "precision": "",
+   "read_only": 0,
+   "reqd": 1,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
    "fieldname": "parent_name",
    "fieldtype": "Data",
    "hidden": 0,
@@ -96,6 +110,19 @@
    "precision": "",
    "read_only": 0,
    "reqd": 1,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "fieldname": "parent_email_id",
+   "fieldtype": "Data",
+   "hidden": 0,
+   "label": "Parent Email Id",
+   "max_length": 0,
+   "max_value": 0,
+   "precision": "",
+   "read_only": 0,
+   "reqd": 0,
    "show_in_filter": 0
   },
   {
