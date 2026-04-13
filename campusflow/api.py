@@ -7,17 +7,25 @@ def process_fee_background(student):
 
 def create_student_on_approval(doc, method):
 	if doc.status == "Approved":
-		if not frappe.db.exists("Student", {"student_name": doc.applicant_name}):
-			student = frappe.get_doc(
-				{
-					"doctype": "Student",
-					"student_name": doc.applicant_name,
-					"program": doc.program,
-					"parent_name": doc.parent_name,
-					"contact_number": doc.contact_number,
-				}
-			)
-			student.insert(ignore_permissions=True)
+		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
+			return
+
+		fee_structure = frappe.get_value(
+			"Fee Structure", {"program": doc.program}, ["name", "total_fee"], as_dict=True
+		)
+
+		student = frappe.get_doc(
+			{
+				"doctype": "Student",
+				"student_name": doc.applicant_name,
+				"program": doc.program,
+				"parent_name": doc.parent_name,
+				"fee_structure": fee_structure.name if fee_structure else None,
+				"total_fee": fee_structure.total_fee if fee_structure else 0,
+			}
+		)
+
+		student.insert(ignore_permissions=True)
 
 
 @frappe.whitelist()
