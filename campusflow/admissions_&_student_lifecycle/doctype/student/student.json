@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "personal_details_section",
+  "user_id",
   "student_name",
   "program",
   "date_of_birth",
@@ -88,16 +89,21 @@
   },
   {
    "fieldname": "parent_email_id",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Parent Email id",
-   "options": "User",
    "reqd": 1
+  },
+  {
+   "fieldname": "user_id",
+   "fieldtype": "Link",
+   "label": "User ID",
+   "options": "User"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-13 13:27:37.652689",
+ "modified": "2026-04-15 15:41:56.793196",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Student",

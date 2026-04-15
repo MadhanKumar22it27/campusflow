@@ -22,6 +22,7 @@ def create_student_on_approval(doc, method):
 				"program": doc.program,
 				"course": doc.course,
 				"gender": doc.gender,
+				"date_of_birth": doc.date_of_birth,
 				"contact_number": doc.contact_number,
 				"parent_name": doc.parent_name,
 				"parent_email_id": doc.parent_email_id,
@@ -31,24 +32,28 @@ def create_student_on_approval(doc, method):
 		)
 
 		student.insert(ignore_permissions=True)
+		create_student_user(student)
 
 
-def create_parent_user(doc, method):
-	if doc.parent_email_id:
-		if not frappe.db.exists("User", doc.parent_email_id):
+def create_student_user(student):
+	if not student.user_id:
+		email = f"{student.name.lower()}@school.com"
+
+		if not frappe.db.exists("User", email):
 			user = frappe.get_doc(
 				{
 					"doctype": "User",
-					"email": doc.parent_email_id,
-					"first_name": doc.parent_name or "Parent",
+					"email": email,
+					"first_name": student.student_name,
+					"username": student.name,
 					"enabled": 1,
-					"send_welcome_email": 1,
-					"role_profile_name": "Parent",
+					"send_welcome_email": 0,
+					"role_profile_name": "Student",
 				}
 			)
-			user.insert(ignore_permissions=True)
 
-			frappe.msgprint(f"Parent User created: {doc.parent_email_id}")
+			user.insert(ignore_permissions=True)
+			student.db_set("user_id", user.name)
 
 
 @frappe.whitelist()
