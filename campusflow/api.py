@@ -6,6 +6,7 @@ def process_fee_background(student):
 
 
 def create_student_on_approval(doc, method):
+	print(f"Creating student for {doc.applicant_name}")
 	if doc.status == "Approved":
 		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
 			return
@@ -30,6 +31,24 @@ def create_student_on_approval(doc, method):
 		)
 
 		student.insert(ignore_permissions=True)
+
+
+def create_parent_user(doc, method):
+	if doc.parent_email_id:
+		if not frappe.db.exists("User", doc.parent_email_id):
+			user = frappe.get_doc(
+				{
+					"doctype": "User",
+					"email": doc.parent_email_id,
+					"first_name": doc.parent_name or "Parent",
+					"enabled": 1,
+					"send_welcome_email": 1,
+					"role_profile_name": "Parent",
+				}
+			)
+			user.insert(ignore_permissions=True)
+
+			frappe.msgprint(f"Parent User created: {doc.parent_email_id}")
 
 
 @frappe.whitelist()
