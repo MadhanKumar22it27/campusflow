@@ -56,6 +56,13 @@ def create_student_user(student):
 			student.db_set("user_id", user.name)
 
 
+def update_student_course(doc, method):
+	if doc.docstatus == 1 and doc.workflow_state == "Approved":
+		frappe.db.set_value("Student", doc.student, "course", doc.requested_course)
+	if frappe.db.exists("Course Change Request", {"student": doc.student, "workflow_state": "Pending"}):
+		frappe.throw("You already have a pending request")
+
+
 @frappe.whitelist()
 def get_student_fee(student: str) -> dict:
 	payments = frappe.get_all(

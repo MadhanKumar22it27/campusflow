@@ -10,6 +10,7 @@
   "user_id",
   "student_name",
   "program",
+  "course",
   "date_of_birth",
   "gender",
   "parent_details_section",
@@ -98,12 +99,19 @@
    "fieldtype": "Link",
    "label": "User ID",
    "options": "User"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "Course",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-15 15:41:56.793196",
+ "modified": "2026-04-15 16:42:59.309464",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Student",
