@@ -5,14 +5,14 @@ frappe.ui.form.on("Student", {
 	refresh: function (frm) {
 		if (!frm.is_new()) {
 			frm.add_custom_button(
-				"Request Course Change",
+				__("Request Course Change"),
 				() => {
 					frappe.new_doc("Course Change Request", {
 						student: frm.doc.name,
 						current_course: frm.doc.course,
 					});
 				},
-				"Actions"
+				__("Actions")
 			);
 		}
 	},
