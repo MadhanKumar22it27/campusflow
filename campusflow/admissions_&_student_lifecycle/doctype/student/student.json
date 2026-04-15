@@ -8,13 +8,13 @@
  "field_order": [
   "personal_details_section",
   "student_name",
-  "student_id",
   "program",
   "date_of_birth",
   "gender",
   "parent_details_section",
   "parent_name",
   "contact_number",
+  "parent_email_id",
   "section_break_pkbv",
   "fee_structure",
   "total_fee"
@@ -31,11 +31,6 @@
    "in_list_view": 1,
    "label": "Student Name",
    "reqd": 1
-  },
-  {
-   "fieldname": "student_id",
-   "fieldtype": "Data",
-   "label": "Student ID"
   },
   {
    "fieldname": "program",
@@ -65,7 +60,7 @@
   },
   {
    "fieldname": "parent_name",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Parent Name",
    "options": "User",
    "reqd": 1
@@ -73,7 +68,8 @@
   {
    "fieldname": "contact_number",
    "fieldtype": "Data",
-   "label": "Contact Number"
+   "label": "Contact Number",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_pkbv",
@@ -89,12 +85,19 @@
    "fieldname": "total_fee",
    "fieldtype": "Currency",
    "label": "Total Fee"
+  },
+  {
+   "fieldname": "parent_email_id",
+   "fieldtype": "Link",
+   "label": "Parent Email id",
+   "options": "User",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-09 13:01:44.237946",
+ "modified": "2026-04-13 13:27:37.652689",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Student",
