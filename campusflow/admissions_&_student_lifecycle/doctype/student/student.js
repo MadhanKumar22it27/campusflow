@@ -20,7 +20,7 @@ frappe.ui.form.on("Student", {
 
 		// 🔹 Add button ONLY ONCE
 		if (roles.includes("Teacher") && !frm.custom_buttons_added) {
-			frm.add_custom_button("Course Change", function () {
+			frm.add_custom_button(__("Course Change"), function () {
 				frm.set_value("allow_course_edit", 1);
 
 				// Enable editing
@@ -34,7 +34,7 @@ frappe.ui.form.on("Student", {
 
 				frm.refresh_field("course_selection");
 
-				frappe.msgprint("You can now edit courses. Save to apply changes.");
+				frappe.msgprint(__("You can now edit courses. Save to apply changes."));
 			});
 
 			frm.custom_buttons_added = true; // prevent duplicates

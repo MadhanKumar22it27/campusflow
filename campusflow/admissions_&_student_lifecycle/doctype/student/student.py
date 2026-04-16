@@ -1,4 +1,5 @@
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
@@ -12,6 +13,6 @@ class Student(Document):
 				old_doc = self.get_doc_before_save()
 
 				if old_doc and old_doc.course_selection != self.course_selection:
-					frappe.throw("You are not allowed to modify courses")
+					frappe.throw(_("You are not allowed to modify courses"))
 
 		self.allow_course_edit = 0

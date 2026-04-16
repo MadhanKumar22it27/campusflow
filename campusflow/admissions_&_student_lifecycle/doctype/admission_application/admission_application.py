@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
@@ -18,7 +19,7 @@ class AdmissionApplication(Document):
 
 		# 🔹 2. Duplicate check
 		if len(courses) != len(set(courses)):
-			frappe.throw("Duplicate courses are not allowed")
+			frappe.throw(_("Duplicate courses are not allowed"))
 
 		# 🔹 3. Program validation
 		for course in courses:
