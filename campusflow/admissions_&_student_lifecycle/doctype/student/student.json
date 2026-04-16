@@ -11,7 +11,7 @@
   "application_id",
   "student_name",
   "program",
-  "course",
+  "course_selection",
   "date_of_birth",
   "gender",
   "student_category",
@@ -21,7 +21,8 @@
   "parent_email_id",
   "section_break_pkbv",
   "fee_structure",
-  "total_fee"
+  "total_fee",
+  "allow_course_edit"
  ],
  "fields": [
   {
@@ -103,13 +104,6 @@
    "options": "User"
   },
   {
-   "fieldname": "course",
-   "fieldtype": "Link",
-   "label": "Course",
-   "options": "Course",
-   "reqd": 1
-  },
-  {
    "fieldname": "student_category",
    "fieldtype": "Data",
    "label": "Student Category",
@@ -120,12 +114,26 @@
    "fieldtype": "Data",
    "label": "Application ID",
    "reqd": 1
+  },
+  {
+   "fieldname": "course_selection",
+   "fieldtype": "Table",
+   "label": "Course Selection",
+   "options": "Course Selection",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_course_edit",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Allow Course Edit"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-16 13:27:03.491182",
+ "modified": "2026-04-16 16:43:31.360959",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Student",

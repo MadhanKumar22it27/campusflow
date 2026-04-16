@@ -25,7 +25,7 @@ def create_student_on_approval(doc, method):
 				"application_id": doc.name,
 				"student_name": doc.applicant_name,
 				"program": doc.program,
-				"course": doc.course,
+				"course_selection": doc.course_selection,
 				"gender": doc.gender,
 				"date_of_birth": doc.date_of_birth,
 				"student_category": doc.student_category,
