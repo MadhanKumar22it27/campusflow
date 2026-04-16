@@ -36,8 +36,13 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-04-16 12:28:32.904633",
+ "links": [
+  {
+   "link_doctype": "Admission Application",
+   "link_fieldname": "program"
+  }
+ ],
+ "modified": "2026-04-16 13:25:37.883635",
  "modified_by": "Administrator",
  "module": "Fees & Finance",
  "name": "Fee Structure",

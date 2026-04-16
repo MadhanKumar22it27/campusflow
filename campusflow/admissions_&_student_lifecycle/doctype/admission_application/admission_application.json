@@ -113,23 +113,11 @@
  "is_submittable": 1,
  "links": [
   {
-   "link_doctype": "Program",
-   "link_fieldname": "program_name"
-  },
-  {
-   "link_doctype": "Course",
-   "link_fieldname": "course_name"
-  },
-  {
-   "link_doctype": "Fee Structure",
-   "link_fieldname": "total_fee"
-  },
-  {
    "link_doctype": "Student",
-   "link_fieldname": "student_name"
+   "link_fieldname": "application_id"
   }
  ],
- "modified": "2026-04-16 12:32:24.252694",
+ "modified": "2026-04-16 13:30:19.812584",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Admission Application",

@@ -8,6 +8,7 @@
  "field_order": [
   "personal_details_section",
   "user_id",
+  "application_id",
   "student_name",
   "program",
   "course",
@@ -113,12 +114,18 @@
    "fieldtype": "Data",
    "label": "Student Category",
    "reqd": 1
+  },
+  {
+   "fieldname": "application_id",
+   "fieldtype": "Data",
+   "label": "Application ID",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-16 12:34:15.614348",
+ "modified": "2026-04-16 13:27:03.491182",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Student",
