@@ -6,6 +6,7 @@ def process_fee_background(student):
 
 
 def create_student_on_approval(doc, method):
+	print(f"Creating student for {doc.applicant_name}")
 	if doc.status == "Approved":
 		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
 			return
@@ -21,6 +22,7 @@ def create_student_on_approval(doc, method):
 				"program": doc.program,
 				"course": doc.course,
 				"gender": doc.gender,
+				"date_of_birth": doc.date_of_birth,
 				"contact_number": doc.contact_number,
 				"parent_name": doc.parent_name,
 				"parent_email_id": doc.parent_email_id,
@@ -30,6 +32,36 @@ def create_student_on_approval(doc, method):
 		)
 
 		student.insert(ignore_permissions=True)
+		create_student_user(student)
+
+
+def create_student_user(student):
+	if not student.user_id:
+		email = f"{student.name.lower()}@school.com"
+
+		if not frappe.db.exists("User", email):
+			user = frappe.get_doc(
+				{
+					"doctype": "User",
+					"email": email,
+					"first_name": student.student_name,
+					"username": student.name,
+					"enabled": 1,
+					"send_welcome_email": 0,
+					"role_profile_name": "Student",
+				}
+			)
+
+			user.insert(ignore_permissions=True)
+			student.db_set("user_id", user.name)
+
+
+def update_student_course(doc, method):
+	if doc.docstatus == 1 and doc.workflow_state == "Approved":
+		frappe.db.set_value("Student", doc.student, "course", doc.requested_course)
+		print(f"Updated course for {doc.student} to {doc.requested_course}")
+	# if frappe.db.exists("Course Change Request", {"student": doc.student, "workflow_state": "Pending"}):
+	# 	frappe.throw("You already have a pending request")
 
 
 @frappe.whitelist()

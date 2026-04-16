@@ -249,6 +249,12 @@ app_license = "mit"
 
 permission_query_conditions = {"Student": "campusflow.permissions.student_query"}
 
-doc_events = {"Admission Application": {"on_update": "campusflow.api.create_student_on_approval"}}
-
+doc_events = {
+	"Admission Application": {
+		"on_update": "campusflow.api.create_student_on_approval",
+	},
+	"Course Change Request": {
+		"on_update": "campusflow.api.update_student_course",
+	},
+}
 fixtures = ["Role", "Workflow", "Print Format"]
