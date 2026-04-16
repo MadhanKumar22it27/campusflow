@@ -12,6 +12,8 @@
   "course",
   "gender",
   "status",
+  "other_options_for_course",
+  "student_category",
   "parent_details_section",
   "parent_name",
   "contact_number",
@@ -91,13 +93,43 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "other_options_for_course",
+   "fieldtype": "Table",
+   "label": "Other options for Course",
+   "options": "Course Selection"
+  },
+  {
+   "fieldname": "student_category",
+   "fieldtype": "Select",
+   "label": "Student Category",
+   "options": "Hostel\nRegular\nScholarship",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2026-04-13 17:10:24.604468",
+ "links": [
+  {
+   "link_doctype": "Program",
+   "link_fieldname": "program_name"
+  },
+  {
+   "link_doctype": "Course",
+   "link_fieldname": "course_name"
+  },
+  {
+   "link_doctype": "Fee Structure",
+   "link_fieldname": "total_fee"
+  },
+  {
+   "link_doctype": "Student",
+   "link_fieldname": "student_name"
+  }
+ ],
+ "modified": "2026-04-16 12:32:24.252694",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Admission Application",

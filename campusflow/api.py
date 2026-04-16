@@ -12,7 +12,7 @@ def create_student_on_approval(doc, method):
 			return
 
 		fee_structure = frappe.get_value(
-			"Fee Structure", {"program": doc.program}, ["name", "total_fee"], as_dict=True
+			"Fee Structure", {"program": doc.program, "student_category": doc.student_category}, "name"
 		)
 
 		student = frappe.get_doc(
@@ -23,6 +23,7 @@ def create_student_on_approval(doc, method):
 				"course": doc.course,
 				"gender": doc.gender,
 				"date_of_birth": doc.date_of_birth,
+				"student_category": doc.student_category,
 				"contact_number": doc.contact_number,
 				"parent_name": doc.parent_name,
 				"parent_email_id": doc.parent_email_id,
