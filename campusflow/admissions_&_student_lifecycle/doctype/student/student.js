@@ -3,7 +3,6 @@
 
 frappe.ui.form.on("Student", {
 	refresh(frm) {
-		// Always keep original table read-only
 		frm.set_df_property("course_selection", "read_only", 1);
 
 		if (frappe.user.has_role("Teacher")) {
@@ -46,7 +45,6 @@ frappe.ui.form.on("Student", {
 							return;
 						}
 
-						// 🔥 Call backend API instead of frm.save()
 						frappe.call({
 							method: "campusflow.api.update_student_courses",
 							args: {
@@ -69,12 +67,10 @@ frappe.ui.form.on("Student", {
 
 				d.show();
 
-				// Inject existing data into dialog table
 				let table = d.fields_dict.courses;
 				table.df.data = course_data;
 				table.grid.refresh();
 
-				// UX polish
 				setTimeout(() => {
 					d.$wrapper.find(".grid-body").css({
 						"max-height": "300px",

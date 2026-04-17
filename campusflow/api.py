@@ -72,13 +72,17 @@ def update_student_courses(student, courses):
 	if isinstance(courses, str):
 		courses = json.loads(courses)
 
+	min_courses = 5
+	valid_courses = [row for row in courses if row.get("course")]
+	print("VALID COURSES:", valid_courses)
+	if len(valid_courses) < min_courses:
+		frappe.throw(f"Minimum {min_courses} courses required")
+
 	doc = frappe.get_doc("Student", student)
 
-	# Clear existing
 	doc.set("course_selection", [])
 
-	# Add new rows
-	for row in courses:
+	for row in valid_courses:
 		doc.append("course_selection", {"course": row.get("course")})
 
 	doc.save(ignore_permissions=True)
