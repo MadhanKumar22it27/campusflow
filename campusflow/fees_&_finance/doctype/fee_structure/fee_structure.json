@@ -8,7 +8,8 @@
  "field_order": [
   "program",
   "student_category",
-  "total_fee"
+  "total_fee",
+  "default"
  ],
  "fields": [
   {
@@ -32,6 +33,12 @@
    "fieldtype": "Data",
    "label": "Student Category",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "default",
+   "fieldtype": "Check",
+   "label": "Default"
   }
  ],
  "grid_page_length": 50,
@@ -42,7 +49,7 @@
    "link_fieldname": "program"
   }
  ],
- "modified": "2026-04-16 13:25:37.883635",
+ "modified": "2026-04-17 15:01:45.192350",
  "modified_by": "Administrator",
  "module": "Fees & Finance",
  "name": "Fee Structure",

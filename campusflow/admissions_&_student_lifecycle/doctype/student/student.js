@@ -24,6 +24,7 @@ frappe.ui.form.on("Student", {
 							in_place_edit: true,
 							editable_grid: 1,
 							cannot_add_rows: false,
+
 							reqd: 1,
 							fields: [
 								{
@@ -44,6 +45,7 @@ frappe.ui.form.on("Student", {
 							frappe.msgprint("At least one course is required");
 							return;
 						}
+						console.log(values);
 
 						frappe.call({
 							method: "campusflow.api.update_student_courses",
