@@ -27,8 +27,13 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-04-10 11:53:33.801957",
+ "links": [
+  {
+   "link_doctype": "Admission Application",
+   "link_fieldname": "course"
+  }
+ ],
+ "modified": "2026-04-16 13:24:10.378647",
  "modified_by": "Administrator",
  "module": "Academics & Attendance",
  "name": "Course",

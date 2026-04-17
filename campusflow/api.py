@@ -11,23 +11,29 @@ def create_student_on_approval(doc, method):
 		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
 			return
 
-		fee_structure = frappe.get_value(
-			"Fee Structure", {"program": doc.program}, ["name", "total_fee"], as_dict=True
-		)
+		fee_structure, total_fee = frappe.get_value(
+			"Fee Structure",
+			{"program": doc.program, "student_category": doc.student_category},
+			["name", "total_fee"],
+		) or (None, 0)
+
+		print(fee_structure, total_fee)
 
 		student = frappe.get_doc(
 			{
 				"doctype": "Student",
+				"application_id": doc.name,
 				"student_name": doc.applicant_name,
 				"program": doc.program,
-				"course": doc.course,
+				"course_selection": doc.course_selection,
 				"gender": doc.gender,
 				"date_of_birth": doc.date_of_birth,
+				"student_category": doc.student_category,
 				"contact_number": doc.contact_number,
 				"parent_name": doc.parent_name,
 				"parent_email_id": doc.parent_email_id,
-				"fee_structure": fee_structure.name if fee_structure else None,
-				"total_fee": fee_structure.total_fee if fee_structure else 0,
+				"fee_structure": fee_structure,
+				"total_fee": total_fee,
 			}
 		)
 
