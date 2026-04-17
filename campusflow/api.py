@@ -1,3 +1,5 @@
+import json
+
 import frappe
 
 
@@ -62,12 +64,26 @@ def create_student_user(student):
 			student.db_set("user_id", user.name)
 
 
-def update_student_course(doc, method):
-	if doc.docstatus == 1 and doc.workflow_state == "Approved":
-		frappe.db.set_value("Student", doc.student, "course", doc.requested_course)
-		print(f"Updated course for {doc.student} to {doc.requested_course}")
-	# if frappe.db.exists("Course Change Request", {"student": doc.student, "workflow_state": "Pending"}):
-	# 	frappe.throw("You already have a pending request")
+@frappe.whitelist()
+def update_student_courses(student, courses):
+	if "Teacher" not in frappe.get_roles():
+		frappe.throw("Not permitted")
+
+	if isinstance(courses, str):
+		courses = json.loads(courses)
+
+	doc = frappe.get_doc("Student", student)
+
+	# Clear existing
+	doc.set("course_selection", [])
+
+	# Add new rows
+	for row in courses:
+		doc.append("course_selection", {"course": row.get("course")})
+
+	doc.save(ignore_permissions=True)
+
+	return "Success"
 
 
 @frappe.whitelist()

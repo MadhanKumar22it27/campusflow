@@ -2,42 +2,86 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Student", {
-	refresh: function (frm) {
-		let roles = frappe.user_roles;
+	refresh(frm) {
+		// Always keep original table read-only
+		frm.set_df_property("course_selection", "read_only", 1);
 
-		// 🔹 Always enforce default state
-		if (roles.includes("Student") || roles.includes("Teacher")) {
-			frm.set_df_property("course_selection", "read_only", 1);
+		if (frappe.user.has_role("Teacher")) {
+			frm.add_custom_button("Course Change", () => {
+				let course_data = (frm.doc.course_selection || []).map((row) => {
+					return {
+						course: row.course,
+					};
+				});
 
-			frm.fields_dict.course_selection.grid.update_docfield_property(
-				"course",
-				"read_only",
-				1
-			);
+				let d = new frappe.ui.Dialog({
+					title: "Edit Courses",
+					size: "large",
+					fields: [
+						{
+							fieldname: "courses",
+							fieldtype: "Table",
+							label: "Courses",
+							in_place_edit: true,
+							editable_grid: 1,
+							cannot_add_rows: false,
+							reqd: 1,
+							fields: [
+								{
+									fieldname: "course",
+									label: "Course",
+									fieldtype: "Link",
+									options: "Course",
+									in_list_view: 1,
+									reqd: 1,
+								},
+							],
+						},
+					],
 
-			frm.refresh_field("course_selection");
-		}
+					primary_action_label: "Save",
+					primary_action(values) {
+						if (!values.courses || values.courses.length === 0) {
+							frappe.msgprint("At least one course is required");
+							return;
+						}
 
-		// 🔹 Add button ONLY ONCE
-		if (roles.includes("Teacher") && !frm.custom_buttons_added) {
-			frm.add_custom_button(__("Course Change"), function () {
-				frm.set_value("allow_course_edit", 1);
+						// 🔥 Call backend API instead of frm.save()
+						frappe.call({
+							method: "campusflow.api.update_student_courses",
+							args: {
+								student: frm.doc.name,
+								courses: values.courses,
+							},
+							callback: function () {
+								frappe.show_alert({
+									message: "Courses updated successfully",
+									indicator: "green",
+								});
 
-				// Enable editing
-				frm.set_df_property("course_selection", "read_only", 0);
+								frm.reload_doc(); // refresh data from backend
+							},
+						});
 
-				frm.fields_dict.course_selection.grid.update_docfield_property(
-					"course",
-					"read_only",
-					0
-				);
+						d.hide();
+					},
+				});
 
-				frm.refresh_field("course_selection");
+				d.show();
 
-				frappe.msgprint(__("You can now edit courses. Save to apply changes."));
+				// Inject existing data into dialog table
+				let table = d.fields_dict.courses;
+				table.df.data = course_data;
+				table.grid.refresh();
+
+				// UX polish
+				setTimeout(() => {
+					d.$wrapper.find(".grid-body").css({
+						"max-height": "300px",
+						"overflow-y": "auto",
+					});
+				}, 200);
 			});
-
-			frm.custom_buttons_added = true; // prevent duplicates
 		}
 	},
 
