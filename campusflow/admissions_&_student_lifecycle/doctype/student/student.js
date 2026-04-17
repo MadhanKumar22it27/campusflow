@@ -6,7 +6,7 @@ frappe.ui.form.on("Student", {
 		frm.set_df_property("course_selection", "read_only", 1);
 
 		if (frappe.user.has_role("Teacher")) {
-			frm.add_custom_button("Course Change", () => {
+			frm.add_custom_button(__("Course Change"), () => {
 				let course_data = (frm.doc.course_selection || []).map((row) => {
 					return {
 						course: row.course,
@@ -14,22 +14,21 @@ frappe.ui.form.on("Student", {
 				});
 
 				let d = new frappe.ui.Dialog({
-					title: "Edit Courses",
+					title: __("Edit Courses"),
 					size: "large",
 					fields: [
 						{
 							fieldname: "courses",
 							fieldtype: "Table",
-							label: "Courses",
+							label: __("Courses"),
 							in_place_edit: true,
 							editable_grid: 1,
 							cannot_add_rows: false,
-
 							reqd: 1,
 							fields: [
 								{
 									fieldname: "course",
-									label: "Course",
+									label: __("Course"),
 									fieldtype: "Link",
 									options: "Course",
 									in_list_view: 1,
@@ -39,12 +38,13 @@ frappe.ui.form.on("Student", {
 						},
 					],
 
-					primary_action_label: "Save",
+					primary_action_label: __("Save"),
 					primary_action(values) {
 						if (!values.courses || values.courses.length === 0) {
-							frappe.msgprint("At least one course is required");
+							frappe.msgprint(__("At least one course is required"));
 							return;
 						}
+
 						console.log(values);
 
 						frappe.call({
@@ -55,11 +55,11 @@ frappe.ui.form.on("Student", {
 							},
 							callback: function () {
 								frappe.show_alert({
-									message: "Courses updated successfully",
+									message: __("Courses updated successfully"),
 									indicator: "green",
 								});
 
-								frm.reload_doc(); // refresh data from backend
+								frm.reload_doc();
 							},
 						});
 
@@ -83,7 +83,7 @@ frappe.ui.form.on("Student", {
 		}
 	},
 
-	after_save: function (frm) {
+	after_save(frm) {
 		let roles = frappe.user_roles;
 
 		if (roles.includes("Teacher")) {

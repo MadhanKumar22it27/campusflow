@@ -1,6 +1,8 @@
 import json
+from typing import Union, dict, list
 
 import frappe
+from frappe import _
 
 
 def process_fee_background(student):
@@ -66,22 +68,20 @@ def create_student_user(student):
 
 
 @frappe.whitelist()
-def update_student_courses(student, courses):
-	print(courses, type(courses))
+def update_student_courses(student: str, courses: str | list[dict]):
 	if "Teacher" not in frappe.get_roles():
-		frappe.throw("Not permitted")
+		frappe.throw(frappe._("Not permitted"))
 
 	if isinstance(courses, str):
 		courses = json.loads(courses)
 
 	settings = frappe.get_single("CampusFlow Settings")
+	min_courses = settings.minimum_courses or 0
 
-	min_courses = settings.minimum_courses
 	valid_courses = [row for row in courses if row.get("course")]
-	print(min_courses)
-	print("VALID COURSES:", valid_courses)
+
 	if len(valid_courses) < min_courses:
-		frappe.throw(f"Minimum {min_courses} courses required")
+		frappe.throw(frappe._("Minimum {0} courses required").format(min_courses))
 
 	doc = frappe.get_doc("Student", student)
 
