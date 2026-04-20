@@ -97,8 +97,7 @@
    "fieldname": "course_selection",
    "fieldtype": "Table",
    "label": "Course Selection",
-   "options": "Course Selection",
-   "reqd": 1
+   "options": "Course Selection"
   }
  ],
  "grid_page_length": 50,
@@ -110,7 +109,7 @@
    "link_fieldname": "application_id"
   }
  ],
- "modified": "2026-04-16 16:22:36.064586",
+ "modified": "2026-04-20 15:44:29.984427",
  "modified_by": "Administrator",
  "module": "Admissions & Student Lifecycle",
  "name": "Admission Application",

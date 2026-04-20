@@ -1,5 +1,5 @@
 import json
-from typing import Union, dict, list
+from typing import Union
 
 import frappe
 from frappe import _
@@ -15,12 +15,21 @@ def create_student_on_approval(doc, method):
 		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
 			return
 
-		fee_structure, total_fee = frappe.get_value(
-			"Fee Structure",
-			# {"program": doc.program, "student_category": doc.student_category},
-			{"program": doc.program, "default": 1},
-			["name", "total_fee"],
-		) or (None, 0)
+		# fee_structure, total_fee = frappe.get_value(
+		# 	"Fee Structure",
+		# 	# {"program": doc.program, "student_category": doc.student_category},
+		# 	{"program": doc.program, "default": 1},
+		# 	["name", "total_fee"],
+		# ) or (None, 0)
+		fee_data = frappe.get_value(
+			"Fee Structure", {"program": doc.program, "default": 1}, ["name", "total_fee"], as_dict=True
+		)
+
+		if not fee_data:
+			frappe.throw(f"No default Fee Structure for {doc.program}")
+
+		fee_structure = fee_data.name
+		total_fee = fee_data.total_fee
 
 		print(fee_structure, total_fee)
 
@@ -218,6 +227,6 @@ def get_unpaid_students():
     """)[0][0]
 
 
-@frappe.whitelist()
-def get_courses_by_program(program):
-	return frappe.get_all("Course", filters={"program": program}, fields=["name"])
+# @frappe.whitelist()
+# def get_courses_by_program(program):
+# 	return frappe.get_all("Course", filters={"program": program}, fields=["name"])
