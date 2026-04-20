@@ -12,6 +12,7 @@
   {
    "fieldname": "course",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Course",
    "options": "Course"
   }
@@ -20,7 +21,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-04-17 10:20:28.117863",
+ "modified": "2026-04-20 11:33:11.384885",
  "modified_by": "Administrator",
  "module": "Academics & Attendance",
  "name": "Course Selection",
