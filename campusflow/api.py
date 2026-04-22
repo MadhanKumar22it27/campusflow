@@ -11,7 +11,7 @@ def process_fee_background(student):
 
 def create_student_on_approval(doc, method):
 	print(f"Creating student for {doc.applicant_name}")
-	if doc.status == "Approved":
+	if doc.status == "Approved" and doc.workflow_state == "Approved":
 		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
 			return
 
@@ -21,15 +21,21 @@ def create_student_on_approval(doc, method):
 		# 	{"program": doc.program, "default": 1},
 		# 	["name", "total_fee"],
 		# ) or (None, 0)
-		fee_data = frappe.get_value(
-			"Fee Structure", {"program": doc.program, "default": 1}, ["name", "total_fee"], as_dict=True
+		fee_structure = frappe.get_value(
+			"Fee Structure",
+			{"program": doc.program, "default": 1},
+			"name",
 		)
 
-		if not fee_data:
-			frappe.throw(f"No default Fee Structure for {doc.program}")
+		if not fee_structure:
+			frappe.msgprint(
+				f"No default Fee Structure found for program: {doc.program}. Please select manually."
+			)
+			# frappe.db.set_value(doc.doctype, doc.name, "fee_structure", "")
+			# doc.get_field("fee_structure").reqd = 1
+			# return
 
-		fee_structure = fee_data.name
-		total_fee = fee_data.total_fee
+		total_fee = frappe.get_value("Fee Structure", fee_structure, "total_fee")
 
 		print(fee_structure, total_fee)
 
