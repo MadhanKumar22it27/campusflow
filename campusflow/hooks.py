@@ -258,3 +258,5 @@ doc_events = {
 	},
 }
 fixtures = ["Role", "Workflow", "Print Format"]
+
+scheduler_events = {"daily": ["campusflow.fees.utils.fee_reminder.enqueue_fee_reminders"]}
