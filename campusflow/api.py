@@ -1,4 +1,8 @@
+import json
+from typing import Union
+
 import frappe
+from frappe import _
 
 
 def process_fee_background(student):
@@ -7,15 +11,31 @@ def process_fee_background(student):
 
 def create_student_on_approval(doc, method):
 	print(f"Creating student for {doc.applicant_name}")
-	if doc.status == "Approved":
+	if doc.status == "Approved" and doc.workflow_state == "Approved":
 		if frappe.db.exists("Student", {"student_name": doc.applicant_name}):
 			return
 
-		fee_structure, total_fee = frappe.get_value(
+		# fee_structure, total_fee = frappe.get_value(
+		# 	"Fee Structure",
+		# 	# {"program": doc.program, "student_category": doc.student_category},
+		# 	{"program": doc.program, "default": 1},
+		# 	["name", "total_fee"],
+		# ) or (None, 0)
+		fee_structure = frappe.get_value(
 			"Fee Structure",
-			{"program": doc.program, "student_category": doc.student_category},
-			["name", "total_fee"],
-		) or (None, 0)
+			{"program": doc.program, "default": 1},
+			"name",
+		)
+
+		if not fee_structure:
+			frappe.msgprint(
+				f"No default Fee Structure found for program: {doc.program}. Please select manually."
+			)
+			# frappe.db.set_value(doc.doctype, doc.name, "fee_structure", "")
+			# doc.get_field("fee_structure").reqd = 1
+			# return
+
+		total_fee = frappe.get_value("Fee Structure", fee_structure, "total_fee")
 
 		print(fee_structure, total_fee)
 
@@ -62,12 +82,32 @@ def create_student_user(student):
 			student.db_set("user_id", user.name)
 
 
-def update_student_course(doc, method):
-	if doc.docstatus == 1 and doc.workflow_state == "Approved":
-		frappe.db.set_value("Student", doc.student, "course", doc.requested_course)
-		print(f"Updated course for {doc.student} to {doc.requested_course}")
-	# if frappe.db.exists("Course Change Request", {"student": doc.student, "workflow_state": "Pending"}):
-	# 	frappe.throw("You already have a pending request")
+@frappe.whitelist()
+def update_student_courses(student: str, courses: str | list[dict]):
+	if "Teacher" not in frappe.get_roles():
+		frappe.throw(frappe._("Not permitted"))
+
+	if isinstance(courses, str):
+		courses = json.loads(courses)
+
+	settings = frappe.get_single("CampusFlow Settings")
+	min_courses = settings.minimum_courses or 0
+
+	valid_courses = [row for row in courses if row.get("course")]
+
+	if len(valid_courses) < min_courses:
+		frappe.throw(frappe._("Minimum {0} courses required").format(min_courses))
+
+	doc = frappe.get_doc("Student", student)
+
+	doc.set("course_selection", [])
+
+	for row in valid_courses:
+		doc.append("course_selection", {"course": row.get("course")})
+
+	doc.save(ignore_permissions=True)
+
+	return "Success"
 
 
 @frappe.whitelist()
@@ -193,8 +233,6 @@ def get_unpaid_students():
     """)[0][0]
 
 
-@frappe.whitelist()
-def get_courses_by_program(program: str):
-	print("from the backend")
-
-	return frappe.get_list("Course", filters={"program": program}, pluck="course_name")
+# @frappe.whitelist()
+# def get_courses_by_program(program):
+# 	return frappe.get_all("Course", filters={"program": program}, fields=["name"])

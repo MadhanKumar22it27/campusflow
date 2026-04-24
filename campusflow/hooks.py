@@ -258,3 +258,10 @@ doc_events = {
 	},
 }
 fixtures = ["Role", "Workflow", "Print Format"]
+
+scheduler_events = {
+	"daily": [
+		"campusflow.fees_and_finance.utils.fee_reminder.enqueue_fee_reminders",
+		"campusflow.academics_and_attendance.utils.attendance_alert.check_low_attendance",
+	]
+}

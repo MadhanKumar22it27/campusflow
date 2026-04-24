@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:course_name",
+ "creation": "2026-03-31 14:59:36.753317",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "course_name",
+  "program"
+ ],
+ "fields": [
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Course Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "label": "Program",
+   "options": "Program"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Admission Application",
+   "link_fieldname": "course"
+  }
+ ],
+ "modified": "2026-04-16 13:24:10.378647",
+ "modified_by": "Administrator",
+ "module": "Academics and Attendance",
+ "name": "Course",
+ "naming_rule": "Expression",
+ "owner": "madhan241125@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "route": "course",
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
