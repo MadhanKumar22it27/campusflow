@@ -48,6 +48,7 @@ def send_alert(student, percentage):
         Regards,
         CampusFlow
         """,
+		delayed=False,
 	)
 
 	print(f"Alert sent for {student}")
